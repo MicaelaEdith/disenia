@@ -1,0 +1,1503 @@
+/* ==========================================================================
+   DISEÑÁ LO QUE VIENE — Landing page
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* ==========================================================================
+   Sistema gráfico: editorial, geométrico, modular, experimental
+   ========================================================================== */
+
+/* ---------- Tokens ---------- */
+:root {
+  --amarillo: #ffd400;
+  --verde: #2f7d4f;
+  --salvia: #a8b89a;
+  --rosa: #f7c8d8;
+  --fucsia: #d1006f;
+  --marino: #0f1f4b;
+  --negro: #111111;
+  --claro: #eef0ee;
+  --gris: #c9ccc8;
+  --gris-texto: #4a4d4a;
+  --blanco: #ffffff;
+
+  --fuente: "Public Sans", "Helvetica Neue", Arial, sans-serif;
+
+  --max: 1240px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --nav-altura: 84px;
+
+  --trama-1: repeating-linear-gradient(
+    45deg,
+    currentColor 0 2px,
+    transparent 2px 9px
+  );
+}
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--fuente);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--negro);
+  background: var(--blanco);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+/* ---------- Accesibilidad ---------- */
+:focus-visible {
+  outline: 3px solid var(--fucsia);
+  outline-offset: 3px;
+}
+
+main section[id] {
+  scroll-margin-top: calc(var(--nav-altura) + 8px);
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 200;
+  padding: 0.75rem 1.25rem;
+  background: var(--negro);
+  color: var(--amarillo);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.skip-link:focus {
+  top: 0.75rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Utilidades tipográficas ---------- */
+.titulo {
+  font-size: clamp(2.1rem, 5.2vw, 4rem);
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.titulo--claro {
+  color: var(--blanco);
+}
+
+.titulo--amarillo {
+  color: var(--amarillo);
+}
+
+.destacado {
+  font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.destacado--claro {
+  color: var(--amarillo);
+}
+
+.destacado--blanco {
+  color: var(--blanco);
+}
+
+.destacado--ancho {
+  max-width: 62ch;
+}
+
+/* ==========================================================================
+   NAVEGACIÓN
+   ========================================================================== */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--negro);
+  color: var(--blanco);
+  border-bottom: 3px solid var(--amarillo);
+}
+
+.nav__inner {
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  min-height: var(--nav-altura);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.nav__marca {
+  font-weight: 900;
+  font-size: 0.9375rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+
+.nav__toggle {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0.6rem;
+}
+
+.nav__toggle-barra {
+  width: 26px;
+  height: 3px;
+  background: var(--blanco);
+  transition: transform 0.2s ease;
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-barra:first-child {
+  transform: translateY(4.5px) rotate(45deg);
+}
+
+.nav__toggle[aria-expanded="true"] .nav__toggle-barra:last-child {
+  transform: translateY(-4.5px) rotate(-45deg);
+}
+
+.nav__lista {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1.75rem);
+}
+
+.nav__link {
+  display: inline-block;
+  padding: 0.4rem 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.nav__link:hover,
+.nav__link:focus-visible {
+  border-bottom-color: var(--amarillo);
+}
+
+.nav__link[aria-current="location"] {
+  border-bottom-color: var(--fucsia);
+}
+
+/* ==========================================================================
+   HERO — Sección 1
+   ========================================================================== */
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--claro);
+  padding: clamp(3rem, 8vh, 5.5rem) var(--gutter) 0;
+  min-height: calc(100vh - var(--nav-altura));
+  display: flex;
+  flex-direction: column;
+}
+
+.hero__contenido {
+  position: relative;
+  z-index: 2;
+  max-width: var(--max);
+  width: 100%;
+  margin-inline: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: clamp(2rem, 6vh, 4rem);
+}
+
+.hero__titulo {
+  margin: clamp(1.5rem, 4vh, 2.75rem) 0;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.88;
+  letter-spacing: -0.035em;
+  font-size: clamp(3.4rem, 13vw, 11rem);
+}
+
+.hero__linea {
+  display: block;
+}
+
+.hero__linea--b {
+  color: var(--fucsia);
+  margin-left: clamp(1.5rem, 8vw, 7rem);
+}
+
+.hero__linea--c {
+  display: inline-block;
+  background: var(--amarillo);
+  color: var(--negro);
+  padding: 0 0.12em 0.06em;
+  margin-left: clamp(3rem, 16vw, 15rem);
+}
+
+.hero__intro {
+  max-width: 56ch;
+  font-size: clamp(1.0625rem, 1.5vw, 1.3125rem);
+  line-height: 1.55;
+  border-left: 4px solid var(--negro);
+  padding-left: 1.25rem;
+}
+
+/* Franja inferior: palabras distribuidas a todo lo ancho de la pantalla */
+.hero__pie {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 0.5rem clamp(1rem, 3vw, 2.5rem);
+  width: calc(100% + var(--gutter) * 2);
+  margin-inline: calc(var(--gutter) * -1);
+  padding: 1rem var(--gutter);
+  border-top: 3px solid var(--negro);
+  font-size: 0.8125rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero__pie-item {
+  flex: 1 1 auto;
+}
+
+.hero__pie-marca {
+  width: 0.7rem;
+  height: 0.7rem;
+  background: var(--fucsia);
+  flex-shrink: 0;
+}
+
+.hero__pie-marca--circulo {
+  border-radius: 50%;
+  background: var(--verde);
+}
+
+/* Formas del hero */
+.forma {
+  position: absolute;
+  display: block;
+}
+
+.forma--amarillo {
+  width: clamp(180px, 26vw, 380px);
+  height: clamp(180px, 26vw, 380px);
+  background: var(--amarillo);
+  top: -6%;
+  right: -4%;
+}
+
+.forma--fucsia {
+  width: clamp(120px, 17vw, 260px);
+  height: clamp(120px, 17vw, 260px);
+  background: var(--fucsia);
+  border-radius: 50%;
+  top: 34%;
+  right: 16%;
+  mix-blend-mode: multiply;
+}
+
+.forma--marino {
+  width: clamp(140px, 20vw, 300px);
+  height: clamp(90px, 13vw, 190px);
+  background: var(--marino);
+  bottom: 18%;
+  right: -3%;
+}
+
+.forma--salvia {
+  width: clamp(160px, 22vw, 340px);
+  height: clamp(70px, 9vw, 140px);
+  background: var(--salvia);
+  top: 12%;
+  right: 30%;
+  mix-blend-mode: multiply;
+}
+
+.forma--circulo {
+  width: clamp(90px, 12vw, 190px);
+  height: clamp(90px, 12vw, 190px);
+  border: 3px solid var(--negro);
+  border-radius: 50%;
+  bottom: 8%;
+  left: -3%;
+}
+
+.forma--trama {
+  width: clamp(110px, 15vw, 230px);
+  height: clamp(110px, 15vw, 230px);
+  color: var(--negro);
+  background-image: var(--trama-1);
+  top: 6%;
+  left: 34%;
+  opacity: 0.5;
+}
+
+/* ==========================================================================
+   SECCIONES — base
+   ========================================================================== */
+.seccion {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(3.5rem, 9vw, 7rem) var(--gutter);
+}
+
+.seccion__inner {
+  position: relative;
+  z-index: 2;
+  max-width: var(--max);
+  margin-inline: auto;
+}
+
+.seccion__cabecera {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 3vw, 2rem);
+  margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.seccion__cabecera--chica {
+  gap: clamp(1rem, 2vw, 1.5rem);
+  margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.seccion__trama {
+  position: absolute;
+  z-index: 1;
+  width: clamp(160px, 22vw, 340px);
+  height: clamp(160px, 22vw, 340px);
+  opacity: 0.35;
+  background-image: var(--trama-1);
+  pointer-events: none;
+}
+
+.seccion__trama--der {
+  right: -4%;
+  bottom: -8%;
+  color: var(--blanco);
+}
+
+.seccion--marino {
+  background: var(--marino);
+  color: var(--claro);
+}
+
+.seccion--claro {
+  background: var(--claro);
+}
+
+.seccion--negro {
+  background: var(--negro);
+  color: var(--claro);
+}
+
+.seccion--salvia {
+  background: var(--salvia);
+  color: var(--negro);
+}
+
+/* ==========================================================================
+   Sección 2 — ¿Por qué? (fondo marino, capas orgánicas)
+   ========================================================================== */
+.porque__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+.porque__texto {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 60ch;
+}
+
+/* Composición orgánica de capas: de lo profundo a lo visible */
+.capas {
+  position: relative;
+}
+
+.capas__pila {
+  position: relative;
+  min-height: clamp(320px, 36vw, 440px);
+}
+
+.capa {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  height: clamp(52px, 6vw, 66px);
+  padding-inline: clamp(1rem, 2vw, 1.75rem);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--claro);
+  font-size: clamp(0.72rem, 1vw, 0.85rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  border: 0;
+  backdrop-filter: blur(3px);
+  border-radius: 8px 64px 8px 64px / 8px 34px 8px 34px;
+}
+
+/* Resultado: capa superior, sólida, con sombra del sistema gráfico */
+.capa--top {
+  top: 0;
+  left: 0;
+  right: clamp(3rem, 12vw, 7rem);
+  height: clamp(66px, 7.5vw, 88px);
+  background: var(--amarillo);
+  color: var(--negro);
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  border-radius: 64px 8px 64px 8px / 34px 8px 34px 8px;
+  box-shadow: 10px 10px 0 var(--fucsia);
+  transform: rotate(-1.2deg);
+  z-index: 3;
+  backdrop-filter: none;
+}
+
+/* Progresión: cada capa descendente se angosta, rota y pierde opacidad */
+.capa--1 {
+  top: 21%;
+  left: 2%;
+  right: clamp(2.5rem, 10vw, 6rem);
+  background: rgba(255, 255, 255, 0.17);
+  transform: rotate(0.9deg);
+}
+
+.capa--2 {
+  top: 36%;
+  left: 7%;
+  right: clamp(2rem, 8vw, 5rem);
+  background: rgba(255, 255, 255, 0.13);
+  border-radius: 64px 8px 64px 8px / 34px 8px 34px 8px;
+  transform: rotate(-1.4deg);
+}
+
+.capa--3 {
+  top: 51%;
+  left: 12%;
+  right: clamp(1.5rem, 6vw, 4rem);
+  background: rgba(255, 255, 255, 0.1);
+  transform: rotate(1.2deg);
+}
+
+.capa--4 {
+  top: 66%;
+  left: 17%;
+  right: clamp(1rem, 4vw, 3rem);
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 64px 8px 64px 8px / 34px 8px 34px 8px;
+  transform: rotate(-0.7deg);
+}
+
+.capa--5 {
+  top: 81%;
+  left: 22%;
+  right: clamp(0.5rem, 2vw, 1.5rem);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--gris);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  transform: rotate(0.5deg);
+}
+
+.capas__leyenda {
+  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+  max-width: 44ch;
+  font-size: 0.9375rem;
+  font-style: italic;
+  color: var(--gris);
+  border-top: 2px solid rgba(255, 255, 255, 0.25);
+  padding-top: 1rem;
+}
+
+/* ==========================================================================
+   Sección 3 — En la sociedad (texto + carrusel)
+   ========================================================================== */
+.vida__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.vida__texto {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 58ch;
+}
+
+.vida__texto .seccion__cabecera {
+  margin-bottom: 0.5rem;
+}
+
+.vida__nota {
+  font-size: 0.875rem;
+  color: var(--gris-texto);
+  border-left: 4px solid var(--fucsia);
+  padding-left: 1rem;
+}
+
+/* ---------- Carrusel ---------- */
+.carrusel {
+  min-width: 0;
+}
+
+.carrusel__barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.carrusel__contador {
+  font-size: 0.9375rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  font-variant-numeric: tabular-nums;
+}
+
+.carrusel__botones {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.carrusel__btn {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 3px solid var(--negro);
+  border-radius: 50%;
+  background: var(--blanco);
+  color: var(--negro);
+  transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.carrusel__btn svg {
+  width: 22px;
+  height: 22px;
+}
+
+.carrusel__btn:hover,
+.carrusel__btn:focus-visible {
+  background: var(--negro);
+  color: var(--amarillo);
+}
+
+.carrusel__btn:active {
+  transform: scale(0.94);
+}
+
+.carrusel__btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.carrusel__btn:disabled:hover {
+  background: var(--blanco);
+  color: var(--negro);
+}
+
+.carrusel__pista {
+  display: flex;
+  gap: clamp(0.75rem, 2vw, 1.35rem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 0.5rem;
+  cursor: grab;
+}
+
+.carrusel__pista::-webkit-scrollbar {
+  display: none;
+}
+
+.carrusel__pista.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+  user-select: none;
+}
+
+.carrusel__pista:focus-visible {
+  outline: 3px solid var(--fucsia);
+  outline-offset: 6px;
+}
+
+.slide {
+  flex: 0 0 clamp(250px, 66%, 470px);
+  scroll-snap-align: start;
+}
+
+.slide figure {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+  height: 100%;
+}
+
+/* Formas asimétricas: una esquina sobredimensionada, alterna por slide */
+.slide__media {
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: var(--gris);
+  border-radius: 16px 16px 16px 150px;
+}
+
+.slide:nth-child(even) .slide__media {
+  border-radius: 16px 150px 16px 16px;
+}
+
+.slide__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.slide:hover .slide__media img {
+  transform: scale(1.04);
+}
+
+.slide__titulo {
+  font-size: 0.9375rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+}
+
+.slide__texto {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  max-width: 46ch;
+}
+
+.slide__credito {
+  font-size: 0.71875rem;
+  line-height: 1.5;
+  color: var(--gris-texto);
+}
+
+.slide__credito a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.slide__credito a:hover {
+  color: var(--fucsia);
+}
+
+.carrusel__progreso {
+  margin-top: 1.35rem;
+  height: 4px;
+  background: rgba(17, 17, 17, 0.14);
+}
+
+.carrusel__progreso-barra {
+  display: block;
+  height: 100%;
+  width: 16.66%;
+  background: var(--fucsia);
+  transition: width 0.25s ease;
+}
+
+/* ==========================================================================
+   Sección 4 — ¿Por qué estudiar Diseño? (fondo negro)
+   ========================================================================== */
+.seccion--negro .destacado {
+  color: var(--blanco);
+}
+
+.seccion__palabra {
+  position: absolute;
+  z-index: 1;
+  left: -2%;
+  bottom: -0.18em;
+  font-size: clamp(5rem, 17vw, 15rem);
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(255, 212, 0, 0.4);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.formacion__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+.formacion__texto {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 60ch;
+}
+
+/* Índice editorial: qué hay detrás */
+.detras__titulo {
+  font-size: clamp(1.125rem, 1.8vw, 1.5rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--blanco);
+  padding-bottom: 1rem;
+}
+
+.detras__lista {
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.detras__fila {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 1rem;
+  align-items: baseline;
+  padding: clamp(0.85rem, 1.6vw, 1.15rem) 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  transition: background 0.15s ease, padding-left 0.15s ease;
+}
+
+.detras__fila:hover {
+  background: rgba(255, 255, 255, 0.05);
+  padding-left: 0.6rem;
+}
+
+.detras__palabra {
+  font-size: clamp(1.25rem, 2.4vw, 1.85rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--amarillo);
+  letter-spacing: -0.01em;
+}
+
+.detras__desc {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--claro);
+}
+
+/* ==========================================================================
+   Sección 5 — La campaña (salvia)
+   ========================================================================== */
+.campana__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.campana__display {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(3rem, 8.5vw, 7.5rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: -0.035em;
+}
+
+.campana__linea {
+  display: block;
+  transform: rotate(-1.5deg);
+}
+
+.campana__linea--hueco {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--negro);
+  margin-left: clamp(1rem, 4vw, 3.5rem);
+  transform: rotate(1deg);
+}
+
+.campana__cuerpo {
+  min-width: 0;
+}
+
+.campana__texto {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 62ch;
+}
+
+/* Instituciones */
+.instituciones {
+  background: var(--blanco);
+  border: 3px solid var(--negro);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.instituciones__titulo {
+  font-size: 0.8125rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  margin-bottom: 1.5rem;
+}
+
+.instituciones__lista {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 3vw, 2.5rem);
+}
+
+.institucion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.institucion__logo {
+  display: grid;
+  place-items: center;
+  height: clamp(72px, 9vw, 100px);
+  border: 2px dashed var(--negro);
+  background: var(--claro);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--gris-texto);
+}
+
+.institucion__nombre {
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+/* ==========================================================================
+   Sección 6 — Promo de la aplicación (fucsia)
+   ========================================================================== */
+.promo {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--fucsia);
+  color: var(--blanco);
+  padding: clamp(4rem, 10vw, 7.5rem) var(--gutter);
+}
+
+.promo :focus-visible {
+  outline-color: var(--negro);
+}
+
+.promo__inner {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.promo__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.promo__cuerpo {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.1rem, 2.5vw, 1.6rem);
+}
+
+.promo__sello {
+  width: fit-content;
+  padding: 0.35rem 0.85rem;
+  background: var(--negro);
+  color: var(--amarillo);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.promo__titulo {
+  font-size: clamp(2.4rem, 6.5vw, 5rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.96;
+  letter-spacing: -0.03em;
+  color: var(--blanco);
+  max-width: 15ch;
+}
+
+.promo__acento {
+  display: inline-block;
+  color: var(--amarillo);
+}
+
+.promo__texto {
+  max-width: 54ch;
+  font-size: clamp(1.0625rem, 1.5vw, 1.3125rem);
+  line-height: 1.55;
+  color: var(--blanco);
+}
+
+.promo__caracteristicas {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  max-width: 52ch;
+}
+
+.promo__caracteristicas li {
+  position: relative;
+  padding-left: 1.75rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.promo__caracteristicas li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.42em;
+  width: 0.8rem;
+  height: 0.8rem;
+  background: var(--amarillo);
+}
+
+.promo__cta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.promo .boton {
+  box-shadow: 6px 6px 0 var(--marino);
+}
+
+.promo .boton:hover,
+.promo .boton:focus-visible {
+  box-shadow: 3px 3px 0 var(--marino);
+}
+
+.promo__nota {
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--claro);
+}
+
+.promo__nota[data-oculto="true"] {
+  display: none;
+}
+
+.promo__cierre {
+  font-size: clamp(1.9rem, 5vw, 3.75rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--blanco);
+}
+
+.promo__cierre span {
+  display: inline-block;
+  background: var(--negro);
+  color: var(--amarillo);
+  padding: 0 0.1em 0.06em;
+}
+
+.promo__instituciones {
+  border-top: 2px solid rgba(255, 255, 255, 0.45);
+  padding-top: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+.promo__instituciones > p {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--claro);
+  margin-bottom: 0.75rem;
+}
+
+.promo__instituciones ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  font-weight: 700;
+  font-size: clamp(0.9375rem, 1.4vw, 1.125rem);
+}
+
+.promo__instituciones li {
+  position: relative;
+}
+
+.promo__instituciones li + li::before {
+  content: "";
+  position: absolute;
+  left: -0.85rem;
+  top: 50%;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--amarillo);
+  transform: translateY(-50%);
+}
+
+/* Mockup de celular (referencial, hecho en CSS) */
+.celular {
+  justify-self: center;
+  width: min(270px, 70vw);
+  padding: 12px;
+  background: var(--negro);
+  border-radius: 38px;
+  transform: rotate(-4deg);
+  box-shadow: 14px 18px 0 rgba(15, 31, 75, 0.65);
+}
+
+.celular__pantalla {
+  background: var(--claro);
+  color: var(--negro);
+  border-radius: 28px;
+  padding: 1rem 0.9rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-height: 440px;
+}
+
+.celular__barra {
+  width: 40%;
+  height: 5px;
+  margin: 0 auto 0.35rem;
+  background: var(--gris);
+  border-radius: 99px;
+}
+
+.celular__app {
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.celular__buscador {
+  font-size: 0.7rem;
+  line-height: 1.3;
+  padding: 0.55rem 0.65rem;
+  background: var(--blanco);
+  border: 2px solid var(--negro);
+  border-radius: 8px;
+  color: var(--gris-texto);
+}
+
+.celular__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.celular__chips span {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.22rem 0.5rem;
+  background: var(--amarillo);
+  border: 2px solid var(--negro);
+  border-radius: 99px;
+}
+
+.celular__chips span:nth-child(2) {
+  background: var(--salvia);
+}
+
+.celular__chips span:nth-child(3) {
+  background: var(--rosa);
+}
+
+.celular__fila {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  line-height: 1.25;
+  padding: 0.5rem;
+  background: var(--blanco);
+  border: 2px solid var(--negro);
+  border-radius: 6px;
+}
+
+.celular__mini {
+  width: 1.4rem;
+  height: 1.4rem;
+  flex-shrink: 0;
+}
+
+.cuadro--amarillo { background: var(--amarillo); }
+.cuadro--fucsia   { background: var(--fucsia); }
+.cuadro--marino   { background: var(--marino); }
+.cuadro--salvia   { background: var(--salvia); }
+
+/* Formas de la promo */
+.promo__forma-a {
+  top: -10%;
+  right: -5%;
+  opacity: 0.9;
+}
+
+.promo__forma-b {
+  bottom: -6%;
+  left: -3%;
+  border-color: var(--amarillo);
+}
+
+/* ==========================================================================
+   Botones
+   ========================================================================== */
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: fit-content;
+  padding: 0.9rem 1.75rem;
+  background: var(--amarillo);
+  color: var(--negro);
+  font-weight: 800;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border: 3px solid var(--negro);
+  box-shadow: 6px 6px 0 var(--fucsia);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.boton:hover,
+.boton:focus-visible {
+  background: var(--blanco);
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0 var(--fucsia);
+}
+
+.boton--grande {
+  padding: 1.15rem 2.25rem;
+  font-size: clamp(1rem, 1.6vw, 1.1875rem);
+}
+
+.boton__flecha {
+  width: 1.35em;
+  height: 1.35em;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.pie {
+  background: var(--negro);
+  color: var(--claro);
+  padding: clamp(2.5rem, 6vw, 4rem) var(--gutter);
+  border-top: 6px solid var(--fucsia);
+}
+
+.pie__inner {
+  max-width: var(--max);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 5fr) minmax(0, 5fr);
+  gap: clamp(1.75rem, 4vw, 3.5rem);
+}
+
+.pie__marca {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.pie__cuadro {
+  width: 1.5rem;
+  height: 1.5rem;
+  background: var(--amarillo);
+  margin-bottom: 0.5rem;
+}
+
+.pie__nombre {
+  font-weight: 900;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--blanco);
+}
+
+.pie__bajada {
+  font-size: 0.875rem;
+  color: var(--gris);
+}
+
+.pie__lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pie__lista a {
+  font-size: 0.9375rem;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 2px;
+}
+
+.pie__lista a:hover,
+.pie__lista a:focus-visible {
+  color: var(--amarillo);
+  border-bottom-color: var(--amarillo);
+}
+
+.pie__instituciones p {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--blanco);
+  line-height: 1.5;
+}
+
+.pie__marcas {
+  margin-top: 0.75rem;
+  font-size: 0.8125rem !important;
+  font-weight: 400 !important;
+  color: var(--gris) !important;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .porque__grid,
+  .vida__grid,
+  .formacion__grid,
+  .campana__grid,
+  .promo__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .capas {
+    max-width: 560px;
+  }
+
+  .campana__display {
+    max-width: 10ch;
+  }
+
+  .celular {
+    transform: rotate(-2deg);
+  }
+}
+
+@media (max-width: 860px) {
+  .nav__toggle {
+    display: flex;
+  }
+
+  .nav__lista {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--negro);
+    border-bottom: 3px solid var(--amarillo);
+    padding: 0.5rem var(--gutter) 1.25rem;
+    display: none;
+  }
+
+  .nav__lista[data-abierto="true"] {
+    display: flex;
+  }
+
+  .nav__link {
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    font-size: 1rem;
+  }
+
+  .nav__inner {
+    position: relative;
+  }
+
+  .hero__linea--b {
+    margin-left: clamp(1rem, 6vw, 3rem);
+  }
+
+  .hero__linea--c {
+    margin-left: clamp(1.5rem, 10vw, 5rem);
+  }
+
+  .forma--salvia,
+  .forma--trama,
+  .forma--marino {
+    display: none;
+  }
+
+  .hero__pie {
+    font-size: 0.6875rem;
+    gap: 0.5rem clamp(0.75rem, 3vw, 1.5rem);
+  }
+
+  .detras__fila {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
+  .slide {
+    flex-basis: 78%;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    font-size: 1rem;
+  }
+
+  .instituciones__lista {
+    grid-template-columns: 1fr;
+  }
+
+  .pie__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__pie-item:nth-child(n + 7),
+  .hero__pie-marca:nth-child(n + 7) {
+    display: none;
+  }
+
+  .hero__pie-item {
+    flex: 0 0 auto;
+  }
+
+  /* Capas: pasan a flujo apilado con angostamiento progresivo */
+  .capas__pila {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .capa {
+    position: static;
+    transform: none;
+    height: auto;
+    min-height: 52px;
+    padding-block: 0.7rem;
+    backdrop-filter: none;
+  }
+
+  .capa--1 { margin-left: 5%; }
+  .capa--2 { margin-left: 10%; }
+  .capa--3 { margin-left: 15%; }
+  .capa--4 { margin-left: 20%; }
+  .capa--5 { margin-left: 25%; }
+
+  .capa--top {
+    margin-right: 0;
+    box-shadow: 6px 6px 0 var(--fucsia);
+    transform: none;
+  }
+
+  .slide {
+    flex-basis: 86%;
+  }
+
+  .slide__media,
+  .slide:nth-child(even) .slide__media {
+    border-radius: 12px 12px 12px 90px;
+  }
+
+  .carrusel__btn {
+    width: 46px;
+    height: 46px;
+  }
+
+  .boton--grande {
+    width: 100%;
+  }
+
+  .celular {
+    transform: none;
+  }
+
+  .promo__instituciones li + li::before {
+    display: none;
+  }
+}
