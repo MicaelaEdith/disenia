@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Diseñá lo que viene — campaña de puesta en valor del Diseño: conocimiento, formación universitaria, investigación y ejercicio profesional.">
   <title>Diseñá lo que viene | Puesta en valor del Diseño</title>
+  <script>document.documentElement.classList.add("js");</script>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -25,6 +26,7 @@
           <li><a href="#sociedad" class="nav__link">En la sociedad</a></li>
           <li><a href="#formacion" class="nav__link">Formación</a></li>
           <li><a href="#campana" class="nav__link">La campaña</a></li>
+          <li><a href="#cierre" class="nav__link nav__link--cta">App diseñAR</a></li>
         </ul>
       </nav>
     </div>
@@ -34,13 +36,13 @@
 
     <!-- ============ 1 · INICIO ============ -->
     <section class="hero" id="inicio" aria-labelledby="hero-titulo">
-      <div class="hero__formas" aria-hidden="true">
-        <span class="forma forma--amarillo"></span>
-        <span class="forma forma--fucsia"></span>
-        <span class="forma forma--marino"></span>
-        <span class="forma forma--salvia"></span>
-        <span class="forma forma--circulo"></span>
-        <span class="forma forma--trama"></span>
+      <div class="hero__texturas" aria-hidden="true">
+        <span class="forma hero__forma--puntos forma--puntos color-fucsia"></span>
+        <span class="forma hero__forma--cuadros forma--cuadros color-marino"></span>
+        <span class="forma hero__forma--grano forma--grano"></span>
+        <span class="forma hero__forma--lineas forma--lineas color-verde"></span>
+        <span class="forma hero__forma--cuadricula forma--cuadricula color-marino"></span>
+        <span class="forma hero__forma--circulo forma--circulo color-marino"></span>
       </div>
       <div class="hero__contenido">
         <h1 class="hero__titulo" id="hero-titulo">
@@ -54,6 +56,9 @@
           universitaria y práctica profesional que interviene en la vida
           cotidiana y en las decisiones colectivas.
         </p>
+        <div class="hero__acciones">
+          <a class="boton" href="#campana">Conocé la campaña</a>
+        </div>
       </div>
       <div class="hero__pie" aria-hidden="true">
         <span class="hero__pie-item">Conocimiento</span>
@@ -71,14 +76,14 @@
     <!-- ============ 2 · POR QUÉ ============ -->
     <section class="seccion seccion--marino" id="por-que" aria-labelledby="porque-titulo">
       <div class="seccion__inner">
-        <header class="seccion__cabecera">
+        <header class="seccion__cabecera" data-revelar>
           <h2 class="titulo titulo--claro" id="porque-titulo">
             ¿Por qué poner<br>en valor el Diseño?
           </h2>
         </header>
 
         <div class="porque__grid">
-          <div class="porque__texto">
+          <div class="porque__texto" data-revelar>
             <p class="destacado destacado--claro">
               No todo lo importante se ve. El Diseño suele asociarse
               principalmente con la estética, la creatividad o la apariencia de
@@ -98,7 +103,7 @@
           </div>
 
           <!-- Composición: de lo profundo a lo visible, por capas orgánicas -->
-          <figure class="capas">
+          <figure class="capas" data-revelar>
             <div class="capas__pila">
               <span class="capa capa--top">Resultado visible</span>
               <span class="capa capa--1">Investigación</span>
@@ -121,7 +126,7 @@
     <section class="seccion seccion--claro" id="sociedad" aria-labelledby="sociedad-titulo">
       <div class="seccion__inner">
         <div class="vida__grid">
-          <div class="vida__texto">
+          <div class="vida__texto" data-revelar>
             <header class="seccion__cabecera seccion__cabecera--chica">
               <h2 class="titulo" id="sociedad-titulo">
                 El Diseño<br>en la sociedad.
@@ -143,6 +148,12 @@
               para responder a necesidades concretas en contextos diversos. El
               Diseño está ahí, de manera integral, aunque no siempre se lo note.
             </p>
+            <a class="enlace-cta" href="#formacion">
+              ¿Querés estudiar Diseño?
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M4 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/>
+              </svg>
+            </a>
             <p class="vida__nota">
               Galería referencial de objetos y escenas de diseño argentino
               (Wikimedia Commons, licencias CC BY / CC BY-SA). Espacio
@@ -150,19 +161,123 @@
             </p>
           </div>
 
-          <!-- Carrusel: scroll-snap, controles, progreso, atribuciones -->
-          <div class="carrusel">
-            <div class="carrusel__barra">
-              <p class="carrusel__contador" aria-live="polite">
-                <span id="carrusel-actual">01</span>&nbsp;/&nbsp;<span>06</span>
-              </p>
-              <div class="carrusel__botones">
-                <button class="carrusel__btn" id="carrusel-anterior" type="button" aria-label="Imagen anterior">
+          <!-- Muestrario: escenario único + tira de miniaturas -->
+          <div class="muestrario" data-revelar>
+            <div class="muestrario__escenario">
+              <div class="muestrario__pila" id="carrusel-pista" tabindex="0" role="region" aria-label="Galería: el Diseño argentino en la vida diaria. Usá las flechas del teclado para recorrerla.">
+                <article class="diapo is-activa">
+                  <figure>
+                    <span class="diapo__media">
+                      <img src="img/mega-click.jpg" width="500" height="375" loading="lazy"
+                           alt="Magiclik, encendedor de mesa diseñado por Hugo Kogan, sobre superficie de madera.">
+                      <span class="diapo__num" aria-hidden="true">01</span>
+                    </span>
+                    <figcaption class="diapo__info">
+                      <p class="diapo__titulo">Magiclik, de Hugo Kogan</p>
+                      <p class="diapo__texto">Diseño industrial argentino (1969): un objeto doméstico donde la forma sigue a un gesto cotidiano.</p>
+                      <p class="diapo__credito">
+                        Foto: <a href="https://commons.wikimedia.org/wiki/File:Mega_Click_by_Hugo_Kogan_Argentina.jpg" target="_blank" rel="noopener noreferrer">pccafaro / Wikimedia Commons</a> · CC BY 2.0
+                      </p>
+                    </figcaption>
+                  </figure>
+                </article>
+
+                <article class="diapo">
+                  <figure>
+                    <span class="diapo__media">
+                      <img src="img/silla-w.jpg" width="650" height="458" loading="lazy"
+                           alt="Silla W de madera curvada fotografiada de perfil sobre fondo claro.">
+                      <span class="diapo__num" aria-hidden="true">02</span>
+                    </span>
+                    <figcaption class="diapo__info">
+                      <p class="diapo__titulo">Silla W</p>
+                      <p class="diapo__texto">Un mueble cotidiano resuelve a la vez materiales, cuerpo y uso: diseño que se prueba sentándose.</p>
+                      <p class="diapo__credito">
+                        Foto: <a href="https://commons.wikimedia.org/wiki/File:Silla_W.jpg" target="_blank" rel="noopener noreferrer">César Janello / Wikimedia Commons</a> · CC BY 4.0
+                      </p>
+                    </figcaption>
+                  </figure>
+                </article>
+
+                <article class="diapo">
+                  <figure>
+                    <span class="diapo__media">
+                      <img src="img/subte-senaltetica.jpg" width="1920" height="1440" loading="lazy"
+                           alt="Señalética de la estación Pueyrredón de la Línea B del Subte de Buenos Aires.">
+                      <span class="diapo__num" aria-hidden="true">03</span>
+                    </span>
+                    <figcaption class="diapo__info">
+                      <p class="diapo__titulo">Señalética del Subte</p>
+                      <p class="diapo__texto">Orientarse en la ciudad: sistemas de información que ordenan el espacio público de miles de pasajeros por día.</p>
+                      <p class="diapo__credito">
+                        Foto: <a href="https://commons.wikimedia.org/wiki/File:Pueyrred%C3%B3n,_Est._de_Subte,_L%C3%ADnea_B,_nueva_se%C3%B1al%C3%A9tica_1.JPG" target="_blank" rel="noopener noreferrer">Geogast / Wikimedia Commons</a> · CC BY 3.0
+                      </p>
+                    </figcaption>
+                  </figure>
+                </article>
+
+                <article class="diapo">
+                  <figure>
+                    <span class="diapo__media">
+                      <img src="img/torino.jpg" width="640" height="390" loading="lazy"
+                           alt="Automóvil IKA Torino color oscuro estacionado, visto de tres cuartos.">
+                      <span class="diapo__num" aria-hidden="true">04</span>
+                    </span>
+                    <figcaption class="diapo__info">
+                      <p class="diapo__titulo">IKA Torino</p>
+                      <p class="diapo__texto">Movilidad producida a escala industrial: una forma pensada para durar, usarse y producirse.</p>
+                      <p class="diapo__credito">
+                        Foto: <a href="https://commons.wikimedia.org/wiki/File:Torino_TS.jpg" target="_blank" rel="noopener noreferrer">ddacal / Wikimedia Commons</a> · CC BY-SA 2.0
+                      </p>
+                    </figcaption>
+                  </figure>
+                </article>
+
+                <article class="diapo">
+                  <figure>
+                    <span class="diapo__media">
+                      <img src="img/puesto-urbano.jpg" width="1500" height="1125" loading="lazy"
+                           alt="Puesto de informes turísticos de Bahía Blanca, estructura urbana con cartel informativo.">
+                      <span class="diapo__num" aria-hidden="true">05</span>
+                    </span>
+                    <figcaption class="diapo__info">
+                      <p class="diapo__titulo">Puesto de Informes, Bahía Blanca</p>
+                      <p class="diapo__texto">Equipamiento urbano: un mueble de calle que hace visible un servicio en el espacio público.</p>
+                      <p class="diapo__credito">
+                        Foto: <a href="https://commons.wikimedia.org/wiki/File:Puesto_de_Informes_Tur%C3%ADsitcos_de_Bah%C3%ADa_Blanca.jpg" target="_blank" rel="noopener noreferrer">Ar estudio / Wikimedia Commons</a> · CC BY-SA 3.0
+                      </p>
+                    </figcaption>
+                  </figure>
+                </article>
+
+                <article class="diapo">
+                  <figure>
+                    <span class="diapo__media">
+                      <img src="img/aero-boero.jpg" width="1920" height="1280" loading="lazy"
+                           alt="Aeronave liviana Aero Boero AB-180 en pista de aterrizaje.">
+                      <span class="diapo__num" aria-hidden="true">06</span>
+                    </span>
+                    <figcaption class="diapo__info">
+                      <p class="diapo__titulo">Aero Boero AB-180</p>
+                      <p class="diapo__texto">Diseñar para volar: aeronaves livianas diseñadas y fabricadas en la Argentina.</p>
+                      <p class="diapo__credito">
+                        Foto: <a href="https://commons.wikimedia.org/wiki/File:Aero_Boero_AB-180.jpg" target="_blank" rel="noopener noreferrer">Rafael Kage / Wikimedia Commons</a> · CC BY 2.0
+                      </p>
+                    </figcaption>
+                  </figure>
+                </article>
+              </div>
+
+              <div class="muestrario__controles">
+                <button class="muestrario__btn" id="carrusel-anterior" type="button" aria-label="Imagen anterior">
                   <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                     <path d="M20 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/>
                   </svg>
                 </button>
-                <button class="carrusel__btn" id="carrusel-siguiente" type="button" aria-label="Imagen siguiente">
+                <p class="muestrario__contador" aria-live="polite">
+                  <span id="carrusel-actual">01</span>&nbsp;/&nbsp;<span>06</span>
+                </p>
+                <button class="muestrario__btn" id="carrusel-siguiente" type="button" aria-label="Imagen siguiente">
                   <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                     <path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/>
                   </svg>
@@ -170,106 +285,17 @@
               </div>
             </div>
 
-            <ul class="carrusel__pista" id="carrusel-pista" tabindex="0" role="region" aria-label="Galería: el Diseño argentino en la vida diaria. Usá las flechas del teclado para recorrerla.">
-              <li class="slide">
-                <figure>
-                  <span class="slide__media">
-                    <img src="img/mega-click.jpg" width="500" height="375" loading="lazy"
-                         alt="Magiclik, encendedor de mesa diseñado por Hugo Kogan, sobre superficie de madera.">
-                  </span>
-                  <figcaption>
-                    <p class="slide__titulo">Magiclik, de Hugo Kogan</p>
-                    <p class="slide__texto">Diseño industrial argentino (1969): un objeto doméstico donde la forma sigue a un gesto cotidiano.</p>
-                    <p class="slide__credito">
-                      Foto: <a href="https://commons.wikimedia.org/wiki/File:Mega_Click_by_Hugo_Kogan_Argentina.jpg" target="_blank" rel="noopener noreferrer">pccafaro / Wikimedia Commons</a> · CC BY 2.0
-                    </p>
-                  </figcaption>
-                </figure>
-              </li>
-
-              <li class="slide">
-                <figure>
-                  <span class="slide__media">
-                    <img src="img/silla-w.jpg" width="650" height="458" loading="lazy"
-                         alt="Silla W de madera curvada fotografiada de perfil sobre fondo claro.">
-                  </span>
-                  <figcaption>
-                    <p class="slide__titulo">Silla W</p>
-                    <p class="slide__texto">Un mueble cotidiano resuelve a la vez materiales, cuerpo y uso: diseño que se prueba sentándose.</p>
-                    <p class="slide__credito">
-                      Foto: <a href="https://commons.wikimedia.org/wiki/File:Silla_W.jpg" target="_blank" rel="noopener noreferrer">César Janello / Wikimedia Commons</a> · CC BY 4.0
-                    </p>
-                  </figcaption>
-                </figure>
-              </li>
-
-              <li class="slide">
-                <figure>
-                  <span class="slide__media">
-                    <img src="img/subte-senaltetica.jpg" width="1920" height="1440" loading="lazy"
-                         alt="Señalética de la estación Pueyrredón de la Línea B del Subte de Buenos Aires.">
-                  </span>
-                  <figcaption>
-                    <p class="slide__titulo">Señalética del Subte</p>
-                    <p class="slide__texto">Orientarse en la ciudad: sistemas de información que ordenan el espacio público de miles de pasajeros por día.</p>
-                    <p class="slide__credito">
-                      Foto: <a href="https://commons.wikimedia.org/wiki/File:Pueyrred%C3%B3n,_Est._de_Subte,_L%C3%ADnea_B,_nueva_se%C3%B1al%C3%A9tica_1.JPG" target="_blank" rel="noopener noreferrer">Geogast / Wikimedia Commons</a> · CC BY 3.0
-                    </p>
-                  </figcaption>
-                </figure>
-              </li>
-
-              <li class="slide">
-                <figure>
-                  <span class="slide__media">
-                    <img src="img/torino.jpg" width="640" height="390" loading="lazy"
-                         alt="Automóvil IKA Torino color oscuro estacionado, visto de tres cuartos.">
-                  </span>
-                  <figcaption>
-                    <p class="slide__titulo">IKA Torino</p>
-                    <p class="slide__texto">Movilidad producida a escala industrial: una forma pensada para durar, usarse y producirse.</p>
-                    <p class="slide__credito">
-                      Foto: <a href="https://commons.wikimedia.org/wiki/File:Torino_TS.jpg" target="_blank" rel="noopener noreferrer">ddacal / Wikimedia Commons</a> · CC BY-SA 2.0
-                    </p>
-                  </figcaption>
-                </figure>
-              </li>
-
-              <li class="slide">
-                <figure>
-                  <span class="slide__media">
-                    <img src="img/puesto-urbano.jpg" width="1500" height="1125" loading="lazy"
-                         alt="Puesto de informes turísticos de Bahía Blanca, estructura urbana con cartel informativo.">
-                  </span>
-                  <figcaption>
-                    <p class="slide__titulo">Puesto de Informes, Bahía Blanca</p>
-                    <p class="slide__texto">Equipamiento urbano: un mueble de calle que hace visible un servicio en el espacio público.</p>
-                    <p class="slide__credito">
-                      Foto: <a href="https://commons.wikimedia.org/wiki/File:Puesto_de_Informes_Tur%C3%ADsitcos_de_Bah%C3%ADa_Blanca.jpg" target="_blank" rel="noopener noreferrer">Ar estudio / Wikimedia Commons</a> · CC BY-SA 3.0
-                    </p>
-                  </figcaption>
-                </figure>
-              </li>
-
-              <li class="slide">
-                <figure>
-                  <span class="slide__media">
-                    <img src="img/aero-boero.jpg" width="1920" height="1280" loading="lazy"
-                         alt="Aeronave liviana Aero Boero AB-180 en pista de aterrizaje.">
-                  </span>
-                  <figcaption>
-                    <p class="slide__titulo">Aero Boero AB-180</p>
-                    <p class="slide__texto">Diseñar para volar: aeronaves livianas diseñadas y fabricadas en la Argentina.</p>
-                    <p class="slide__credito">
-                      Foto: <a href="https://commons.wikimedia.org/wiki/File:Aero_Boero_AB-180.jpg" target="_blank" rel="noopener noreferrer">Rafael Kage / Wikimedia Commons</a> · CC BY 2.0
-                    </p>
-                  </figcaption>
-                </figure>
-              </li>
+            <ul class="muestrario__tira">
+              <li><button class="miniatura is-activa" type="button" aria-label="Ver imagen 1: Magiclik, de Hugo Kogan" aria-current="true"><img src="img/mega-click.jpg" width="500" height="375" loading="lazy" alt=""></button></li>
+              <li><button class="miniatura" type="button" aria-label="Ver imagen 2: Silla W"><img src="img/silla-w.jpg" width="650" height="458" loading="lazy" alt=""></button></li>
+              <li><button class="miniatura" type="button" aria-label="Ver imagen 3: Señalética del Subte"><img src="img/subte-senaltetica.jpg" width="1920" height="1440" loading="lazy" alt=""></button></li>
+              <li><button class="miniatura" type="button" aria-label="Ver imagen 4: IKA Torino"><img src="img/torino.jpg" width="640" height="390" loading="lazy" alt=""></button></li>
+              <li><button class="miniatura" type="button" aria-label="Ver imagen 5: Puesto de Informes, Bahía Blanca"><img src="img/puesto-urbano.jpg" width="1500" height="1125" loading="lazy" alt=""></button></li>
+              <li><button class="miniatura" type="button" aria-label="Ver imagen 6: Aero Boero AB-180"><img src="img/aero-boero.jpg" width="1920" height="1280" loading="lazy" alt=""></button></li>
             </ul>
 
-            <div class="carrusel__progreso" aria-hidden="true">
-              <span class="carrusel__progreso-barra" id="carrusel-progreso-barra"></span>
+            <div class="muestrario__progreso" aria-hidden="true">
+              <span class="muestrario__progreso-barra" id="carrusel-progreso-barra"></span>
             </div>
           </div>
         </div>
@@ -280,11 +306,11 @@
     <section class="seccion seccion--negro" id="formacion" aria-labelledby="formacion-titulo">
       <span class="seccion__palabra" aria-hidden="true">Formación</span>
       <div class="seccion__inner">
-        <header class="seccion__cabecera">
+        <header class="seccion__cabecera" data-revelar>
           <h2 class="titulo titulo--amarillo" id="formacion-titulo">
             ¿Por qué estudiar<br>Diseño?
           </h2>
-          <p class="destacado destacado--ancho destacado--blanco">
+          <p class="destacado destacado--blanco destacado--ancho">
             Estudiar Diseño no es aprender a decorar: es aprender a mirar antes
             de proponer. Es entender qué hay detrás de todo lo que se diseña y
             por qué esas decisiones importan.
@@ -292,7 +318,7 @@
         </header>
 
         <div class="formacion__grid">
-          <div class="formacion__texto">
+          <div class="formacion__texto" data-revelar>
             <p>
               La formación en Diseño combina conocimientos teóricos y técnicos,
               investigación, experimentación y práctica proyectual. Implica
@@ -311,36 +337,112 @@
             </p>
           </div>
 
-          <div class="detras">
-            <h3 class="detras__titulo">Qué hay detrás de la formación</h3>
-            <ul class="detras__lista">
-              <li class="detras__fila">
-                <p class="detras__palabra">Observar</p>
-                <p class="detras__desc">Leer quién usa qué, cómo y por qué, antes de proponer.</p>
+          <!-- Acordeón: qué hay detrás de la formación -->
+          <div class="acordeon" data-revelar>
+            <h3 class="acordeon__titulo">Qué hay detrás de la formación</h3>
+            <p class="acordeon__ayuda">Elegí una palabra para ver qué implica en la práctica.</p>
+            <ul class="acordeon__lista">
+              <li class="acordeon__item">
+                <h4 class="acordeon__encabezado">
+                  <button class="acordeon__boton" id="btn-observar" type="button" aria-expanded="false" aria-controls="detalle-observar">
+                    <span class="acordeon__palabra">Observar</span>
+                    <span class="acordeon__signo" aria-hidden="true"></span>
+                  </button>
+                </h4>
+                <div class="acordeon__panel" id="detalle-observar" role="region" aria-labelledby="btn-observar">
+                  <div class="acordeon__panel-interior">
+                    <p>Antes de proponer algo hay que mirar cómo se usa lo que ya existe: quién lo usa, en qué momento y con qué dificultades.</p>
+                    <p class="acordeon__ejemplo">En un proyecto: diseñar la señalización de un edificio empieza por observar cómo se pierde la gente dentro.</p>
+                  </div>
+                </div>
               </li>
-              <li class="detras__fila">
-                <p class="detras__palabra">Investigar</p>
-                <p class="detras__desc">Preguntas, fuentes y métodos para sostener cada decisión.</p>
+
+              <li class="acordeon__item">
+                <h4 class="acordeon__encabezado">
+                  <button class="acordeon__boton" id="btn-investigar" type="button" aria-expanded="false" aria-controls="detalle-investigar">
+                    <span class="acordeon__palabra">Investigar</span>
+                    <span class="acordeon__signo" aria-hidden="true"></span>
+                  </button>
+                </h4>
+                <div class="acordeon__panel" id="detalle-investigar" role="region" aria-labelledby="btn-investigar">
+                  <div class="acordeon__panel-interior">
+                    <p>La investigación da sustento: fuentes, entrevistas, referencias y datos para no decidir solo por intuición.</p>
+                    <p class="acordeon__ejemplo">En un proyecto: antes de armar una campaña se releva cómo se informa hoy la misma temática.</p>
+                  </div>
+                </div>
               </li>
-              <li class="detras__fila">
-                <p class="detras__palabra">Analizar</p>
-                <p class="detras__desc">Convertir información y contextos en criterios de proyecto.</p>
+
+              <li class="acordeon__item">
+                <h4 class="acordeon__encabezado">
+                  <button class="acordeon__boton" id="btn-analizar" type="button" aria-expanded="false" aria-controls="detalle-analizar">
+                    <span class="acordeon__palabra">Analizar</span>
+                    <span class="acordeon__signo" aria-hidden="true"></span>
+                  </button>
+                </h4>
+                <div class="acordeon__panel" id="detalle-analizar" role="region" aria-labelledby="btn-analizar">
+                  <div class="acordeon__panel-interior">
+                    <p>Analizar es ordenar y comparar la información hasta convertirla en criterios concretos de proyecto.</p>
+                    <p class="acordeon__ejemplo">En un proyecto: comparar dos piezas gráficas para ver cuál se entiende más rápido y por qué.</p>
+                  </div>
+                </div>
               </li>
-              <li class="detras__fila">
-                <p class="detras__palabra">Experimentar</p>
-                <p class="detras__desc">Ensayar formas, materiales y prototipos antes de cerrar.</p>
+
+              <li class="acordeon__item">
+                <h4 class="acordeon__encabezado">
+                  <button class="acordeon__boton" id="btn-experimentar" type="button" aria-expanded="false" aria-controls="detalle-experimentar">
+                    <span class="acordeon__palabra">Experimentar</span>
+                    <span class="acordeon__signo" aria-hidden="true"></span>
+                  </button>
+                </h4>
+                <div class="acordeon__panel" id="detalle-experimentar" role="region" aria-labelledby="btn-experimentar">
+                  <div class="acordeon__panel-interior">
+                    <p>Probar, equivocarse y volver a probar: bocetos, materiales, prototipos y variantes hasta encontrar la solución.</p>
+                    <p class="acordeon__ejemplo">En un proyecto: imprimir diez versiones de una tipografía para elegir la que mejor se lee.</p>
+                  </div>
+                </div>
               </li>
-              <li class="detras__fila">
-                <p class="detras__palabra">Fundamentar</p>
-                <p class="detras__desc">Argumentar con rigor por qué cada cosa es como es.</p>
+
+              <li class="acordeon__item">
+                <h4 class="acordeon__encabezado">
+                  <button class="acordeon__boton" id="btn-fundamentar" type="button" aria-expanded="false" aria-controls="detalle-fundamentar">
+                    <span class="acordeon__palabra">Fundamentar</span>
+                    <span class="acordeon__signo" aria-hidden="true"></span>
+                  </button>
+                </h4>
+                <div class="acordeon__panel" id="detalle-fundamentar" role="region" aria-labelledby="btn-fundamentar">
+                  <div class="acordeon__panel-interior">
+                    <p>Cada decisión se sostiene con argumentos: por qué esa forma, ese color, ese material y no otro.</p>
+                    <p class="acordeon__ejemplo">En un proyecto: explicar con razones por qué una interfaz ordena la información de determinada manera.</p>
+                  </div>
+                </div>
               </li>
-              <li class="detras__fila">
-                <p class="detras__palabra">Debatir</p>
-                <p class="detras__desc">Contrastar con pares, docentes y otros saberes.</p>
+
+              <li class="acordeon__item">
+                <h4 class="acordeon__encabezado">
+                  <button class="acordeon__boton" id="btn-debatir" type="button" aria-expanded="false" aria-controls="detalle-debatir">
+                    <span class="acordeon__palabra">Debatir</span>
+                    <span class="acordeon__signo" aria-hidden="true"></span>
+                  </button>
+                </h4>
+                <div class="acordeon__panel" id="detalle-debatir" role="region" aria-labelledby="btn-debatir">
+                  <div class="acordeon__panel-interior">
+                    <p>El trabajo se pone en común y se contrasta con pares, docentes y otras miradas para mejorarlo.</p>
+                    <p class="acordeon__ejemplo">En un proyecto: una crítica de taller puede cambiar por completo el rumbo de un trabajo.</p>
+                  </div>
+                </div>
               </li>
             </ul>
           </div>
         </div>
+
+        <p class="seccion__cta" data-revelar>
+          <a class="enlace-cta" href="#cierre">
+            Descubrí la aplicación
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M4 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/>
+            </svg>
+          </a>
+        </p>
       </div>
     </section>
 
@@ -354,7 +456,7 @@
             <span class="campana__linea">viene.</span>
           </p>
 
-          <div class="campana__cuerpo">
+          <div class="campana__cuerpo" data-revelar>
             <header class="seccion__cabecera seccion__cabecera--chica">
               <h2 class="titulo" id="campana-titulo">La campaña<br>y su propósito.</h2>
             </header>
@@ -376,10 +478,16 @@
                 de la construcción de nuevas posibilidades para el futuro.
               </p>
             </div>
+            <a class="boton" href="#cierre">
+              Explorar la aplicación
+              <svg class="boton__flecha" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M4 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
+              </svg>
+            </a>
           </div>
         </div>
 
-        <div class="instituciones">
+        <div class="instituciones" data-revelar>
           <p class="instituciones__titulo">Una iniciativa de</p>
           <ul class="instituciones__lista">
             <li class="institucion">
@@ -406,16 +514,16 @@
       </div>
     </section>
 
-    <!-- ============ 6 · LA APLICACIÓN ============ -->
+    <!-- ============ 6 · APP diseñAR ============ -->
     <section class="promo" id="cierre" aria-labelledby="promo-titulo">
-      <div class="promo__formas" aria-hidden="true">
-        <span class="forma forma--amarillo promo__forma-a"></span>
-        <span class="forma forma--circulo promo__forma-b"></span>
+      <div class="promo__texturas" aria-hidden="true">
+        <span class="forma promo__forma-a forma--lineas color-marino"></span>
+        <span class="forma promo__forma-b forma--puntos color-marino"></span>
       </div>
       <div class="seccion__inner promo__inner">
         <div class="promo__grid">
-          <div class="promo__cuerpo">
-            <p class="promo__sello">Aplicación complementaria</p>
+          <div class="promo__cuerpo" data-revelar>
+            <p class="promo__sello">App diseñAR</p>
             <h2 class="promo__titulo" id="promo-titulo">
               La formación en Diseño Gráfico, <span class="promo__acento">en tu celular.</span>
             </h2>
@@ -435,7 +543,7 @@
             <div class="promo__cta">
               <!-- CONFIGURACIÓN: URL_APLICACION en js/main.js -->
               <a class="boton boton--grande" id="cta-aplicacion" href="#">
-                Descargar la aplicación
+                Descargar App diseñAR
                 <svg class="boton__flecha" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                   <path d="M12 4v12M6 11l6 6 6-6M5 20h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/>
                 </svg>
@@ -447,10 +555,10 @@
           </div>
 
           <!-- Mockup referencial de la aplicación (no es una captura real) -->
-          <div class="celular" aria-hidden="true">
+          <div class="celular" data-revelar aria-hidden="true">
             <div class="celular__pantalla">
               <p class="celular__barra"></p>
-              <p class="celular__app">Diseñá lo que viene</p>
+              <p class="celular__app">App diseñAR</p>
               <p class="celular__buscador">Buscar formación en Diseño Gráfico</p>
               <p class="celular__chips">
                 <span>Carreras</span><span>Cursos</span><span>Posgrados</span>
@@ -493,7 +601,7 @@
           <li><a href="#sociedad">El Diseño en la sociedad</a></li>
           <li><a href="#formacion">¿Por qué estudiar Diseño?</a></li>
           <li><a href="#campana">La campaña y su propósito</a></li>
-          <li><a href="#cierre">La aplicación</a></li>
+          <li><a href="#cierre">App diseñAR</a></li>
         </ul>
       </nav>
       <div class="pie__instituciones">
@@ -502,6 +610,12 @@
       </div>
     </div>
   </footer>
+
+  <button class="volver" id="volver-arriba" type="button" aria-label="Volver arriba" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M12 20V6M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/>
+    </svg>
+  </button>
 
   <script src="js/main.js"></script>
 </body>

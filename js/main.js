@@ -1,8 +1,9 @@
 /* ==========================================================================
    DISEÑÁ LO QUE VIENE — comportamiento
-   Sin dependencias. Solo: menú mobile, resaltado de sección activa,
-   desplazamiento con offset para el header sticky, carrusel de la
-   galería y configuración del CTA hacia la aplicación complementaria.
+    Sin dependencias. Solo: menú mobile, resaltado de sección activa,
+    desplazamiento con offset para el header sticky, muestrario de la
+    galería, acordeón de la formación y configuración del CTA hacia la
+    aplicación complementaria.
    ========================================================================== */
 
 (function () {
@@ -97,127 +98,159 @@
     });
   }
 
-  /* --------------------------- Carrusel galería --------------------------- */
-  var pista = document.getElementById("carrusel-pista");
+  /* --------------------------- Muestrario galería --------------------------- */
+  var pila = document.getElementById("carrusel-pista");
   var btnAnterior = document.getElementById("carrusel-anterior");
   var btnSiguiente = document.getElementById("carrusel-siguiente");
   var contador = document.getElementById("carrusel-actual");
   var barra = document.getElementById("carrusel-progreso-barra");
+  var tira = document.querySelector(".muestrario__tira");
 
-  if (pista) {
-    var slides = Array.prototype.slice.call(pista.querySelectorAll(".slide"));
+  if (pila) {
+    var diapos = Array.prototype.slice.call(pila.querySelectorAll(".diapo"));
+    var miniaturas = tira
+      ? Array.prototype.slice.call(tira.querySelectorAll(".miniatura"))
+      : [];
+    var total = diapos.length;
     var indice = 0;
 
-    function comportamientoScroll() {
-      return window.matchMedia("(prefers-reduced-motion: reduce)").matches
-        ? "auto"
-        : "smooth";
-    }
+    function mostrar(i) {
+      if (!total) return;
+      indice = (i + total) % total;
 
-    function paso() {
-      if (slides.length < 2) return pista.clientWidth;
-      return slides[1].offsetLeft - slides[0].offsetLeft;
-    }
+      diapos.forEach(function (d, n) {
+        d.classList.toggle("is-activa", n === indice);
+      });
 
-    // Posición del slide dentro del contenido scrolleable de la pista
-    function inicioSlide(el) {
-      return el.getBoundingClientRect().left - pista.getBoundingClientRect().left + pista.scrollLeft;
-    }
+      miniaturas.forEach(function (m, n) {
+        var activa = n === indice;
+        m.classList.toggle("is-activa", activa);
+        if (activa) {
+          m.setAttribute("aria-current", "true");
+        } else {
+          m.removeAttribute("aria-current");
+        }
+      });
 
-    function indiceDesdeScroll() {
-      var p = paso();
-      if (p <= 0) return 0;
-      return Math.max(0, Math.min(slides.length - 1, Math.round(pista.scrollLeft / p)));
-    }
-
-    function actualizar() {
-      indice = indiceDesdeScroll();
-      if (contador) {
-        contador.textContent = String(indice + 1).padStart(2, "0");
-      }
-      if (barra) {
-        barra.style.width = ((indice + 1) / slides.length) * 100 + "%";
-      }
-      if (btnAnterior) btnAnterior.disabled = indice === 0;
-      if (btnSiguiente) btnSiguiente.disabled = indice === slides.length - 1;
-    }
-
-    function irA(i) {
-      indice = Math.max(0, Math.min(slides.length - 1, i));
-      pista.scrollTo({ left: inicioSlide(slides[indice]), behavior: comportamientoScroll() });
-      actualizar();
+      if (contador) contador.textContent = String(indice + 1).padStart(2, "0");
+      if (barra) barra.style.width = ((indice + 1) / total) * 100 + "%";
     }
 
     if (btnAnterior) {
       btnAnterior.addEventListener("click", function () {
-        irA(indice - 1);
+        mostrar(indice - 1);
       });
     }
 
     if (btnSiguiente) {
       btnSiguiente.addEventListener("click", function () {
-        irA(indice + 1);
+        mostrar(indice + 1);
       });
     }
 
-    var programatico = false;
-    pista.addEventListener("scroll", function () {
-      if (programatico) return;
-      actualizar();
-    }, { passive: true });
-
-    // Sincroniza el estado cuando el scroll lento termina
-    pista.addEventListener("scrollend", function () {
-      actualizar();
+    miniaturas.forEach(function (m, n) {
+      m.addEventListener("click", function () {
+        mostrar(n);
+      });
     });
 
-    pista.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowRight") {
+    pila.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight" || e.key === "ArrowDown") {
         e.preventDefault();
-        irA(indice + 1);
-      } else if (e.key === "ArrowLeft") {
+        mostrar(indice + 1);
+      } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
         e.preventDefault();
-        irA(indice - 1);
+        mostrar(indice - 1);
+      } else if (e.key === "Home") {
+        e.preventDefault();
+        mostrar(0);
+      } else if (e.key === "End") {
+        e.preventDefault();
+        mostrar(total - 1);
       }
     });
 
-    /* Arrastre con mouse/pointer (la rueda y el swipe táctil ya son nativos) */
-    var arrastrando = false;
-    var inicioX = 0;
-    var inicioScroll = 0;
+    /* Deslizar con el dedo sobre el escenario */
+    var toqueX = null;
+    pila.addEventListener("touchstart", function (e) {
+      toqueX = e.changedTouches[0].clientX;
+    }, { passive: true });
 
-    pista.addEventListener("pointerdown", function (e) {
-      if (e.pointerType !== "mouse") return;
-      arrastrando = true;
-      inicioX = e.clientX;
-      inicioScroll = pista.scrollLeft;
-      pista.classList.add("is-dragging");
-      pista.setPointerCapture(e.pointerId);
+    pila.addEventListener("touchend", function (e) {
+      if (toqueX === null) return;
+      var delta = e.changedTouches[0].clientX - toqueX;
+      toqueX = null;
+      if (Math.abs(delta) < 45) return;
+      mostrar(delta < 0 ? indice + 1 : indice - 1);
+    }, { passive: true });
+
+    mostrar(0);
+  }
+
+  /* --------------------------- Acordeón formación --------------------------- */
+  var botonesAcordeon = Array.prototype.slice.call(
+    document.querySelectorAll(".acordeon__boton")
+  );
+
+  botonesAcordeon.forEach(function (boton) {
+    boton.addEventListener("click", function () {
+      var item = boton.closest(".acordeon__item");
+      if (!item) return;
+      var abierto = item.classList.toggle("is-abierto");
+      boton.setAttribute("aria-expanded", String(abierto));
     });
+  });
 
-    pista.addEventListener("pointermove", function (e) {
-      if (!arrastrando) return;
-      pista.scrollLeft = inicioScroll - (e.clientX - inicioX);
-    });
+  /* ------------------- Aparición al hacer scroll ------------------- */
+  var revelados = Array.prototype.slice.call(
+    document.querySelectorAll("[data-revelar]")
+  );
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    function terminarArrastre() {
-      if (!arrastrando) return;
-      arrastrando = false;
-      pista.classList.remove("is-dragging");
-      // Tras soltar, se ancla al slide más cercano
-      programatico = true;
-      irA(indiceDesdeScroll());
-      window.setTimeout(function () {
-        programatico = false;
-      }, 400);
+  if (revelados.length) {
+    if (!("IntersectionObserver" in window) || reduceMotion) {
+      revelados.forEach(function (el) {
+        el.classList.add("is-visible");
+      });
+    } else {
+      var revealObserver = new IntersectionObserver(
+        function (entries, obs) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              obs.unobserve(entry.target);
+            }
+          });
+        },
+        { rootMargin: "0px 0px -10% 0px", threshold: 0.08 }
+      );
+      revelados.forEach(function (el) {
+        revealObserver.observe(el);
+      });
+    }
+  }
+
+  /* ------------------- Volver arriba ------------------- */
+  var volver = document.getElementById("volver-arriba");
+
+  if (volver) {
+    function actualizarVolver() {
+      if (window.scrollY > 600) {
+        volver.removeAttribute("hidden");
+      } else {
+        volver.setAttribute("hidden", "");
+      }
     }
 
-    pista.addEventListener("pointerup", terminarArrastre);
-    pista.addEventListener("pointercancel", terminarArrastre);
-    pista.addEventListener("pointerleave", terminarArrastre);
+    window.addEventListener("scroll", actualizarVolver, { passive: true });
+    actualizarVolver();
 
-    window.addEventListener("resize", actualizar);
-    actualizar();
+    volver.addEventListener("click", function () {
+      window.scrollTo({
+        top: 0,
+        behavior: reduceMotion ? "auto" : "smooth"
+      });
+    });
   }
 
   /* ---------------- CTA aplicación complementaria ---------------- */
