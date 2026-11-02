@@ -17,6 +17,8 @@
      ------------------------------------------------------------------ */
   var URL_APLICACION = "";
 
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   /* ------------------------------ Menú ------------------------------ */
   var toggle = document.querySelector(".nav__toggle");
   var lista = document.getElementById("nav-menu");
@@ -98,6 +100,19 @@
     });
   }
 
+  /* --------------------- Capas del proceso de diseño --------------------- */
+  var capas = Array.prototype.slice.call(
+    document.querySelectorAll(".capas__pila .capa")
+  );
+
+  capas.forEach(function (capa) {
+    capa.addEventListener("click", function () {
+      capas.forEach(function (otra) {
+        otra.setAttribute("aria-pressed", String(otra === capa));
+      });
+    });
+  });
+
   /* --------------------------- Muestrario galería --------------------------- */
   var pila = document.getElementById("carrusel-pista");
   var btnAnterior = document.getElementById("carrusel-anterior");
@@ -154,6 +169,12 @@
       });
     });
 
+    pila.addEventListener("click", function (e) {
+      if (e.target.closest(".diapo.is-activa .diapo__media")) {
+        mostrar(indice + 1);
+      }
+    });
+
     pila.addEventListener("keydown", function (e) {
       if (e.key === "ArrowRight" || e.key === "ArrowDown") {
         e.preventDefault();
@@ -201,11 +222,44 @@
     });
   });
 
+  /* ------------------- Mockup interactivo de la app ------------------- */
+  var chips = Array.prototype.slice.call(
+    document.querySelectorAll(".celular__chip")
+  );
+  var filasCelular = Array.prototype.slice.call(
+    document.querySelectorAll(".celular__fila")
+  );
+
+  chips.forEach(function (chip) {
+    chip.addEventListener("click", function () {
+      var filtro = chip.getAttribute("data-filtro");
+      var activo = chip.getAttribute("aria-pressed") === "true";
+
+      chips.forEach(function (otro) {
+        otro.setAttribute("aria-pressed", "false");
+      });
+
+      if (activo) {
+        filasCelular.forEach(function (fila) {
+          fila.classList.remove("is-oculto");
+        });
+        return;
+      }
+
+      chip.setAttribute("aria-pressed", "true");
+      filasCelular.forEach(function (fila) {
+        fila.classList.toggle(
+          "is-oculto",
+          fila.getAttribute("data-categoria") !== filtro
+        );
+      });
+    });
+  });
+
   /* ------------------- Aparición al hacer scroll ------------------- */
   var revelados = Array.prototype.slice.call(
     document.querySelectorAll("[data-revelar]")
   );
-  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   if (revelados.length) {
     if (!("IntersectionObserver" in window) || reduceMotion) {

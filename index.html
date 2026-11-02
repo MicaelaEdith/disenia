@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Diseñá lo que viene — campaña de puesta en valor del Diseño: conocimiento, formación universitaria, investigación y ejercicio profesional.">
-  <title>Diseñá lo que viene | Puesta en valor del Diseño</title>
+  <meta name="description" content="¿De qué se trata diseñar? — Campaña Diseñá lo que viene: puesta en valor del Diseño como conocimiento, formación universitaria y práctica profesional.">
+  <title>¿De qué se trata diseñar? | Diseñá lo que viene</title>
   <script>document.documentElement.classList.add("js");</script>
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -37,26 +37,35 @@
     <!-- ============ 1 · INICIO ============ -->
     <section class="hero" id="inicio" aria-labelledby="hero-titulo">
       <div class="hero__texturas" aria-hidden="true">
-        <span class="forma hero__forma--puntos forma--puntos color-fucsia"></span>
-        <span class="forma hero__forma--cuadros forma--cuadros color-marino"></span>
-        <span class="forma hero__forma--grano forma--grano"></span>
-        <span class="forma hero__forma--lineas forma--lineas color-verde"></span>
-        <span class="forma hero__forma--cuadricula forma--cuadricula color-marino"></span>
-        <span class="forma hero__forma--circulo forma--circulo color-marino"></span>
+        <span class="forma hero__figura--b forma--cuadricula color-marino"></span>
+        <span class="forma hero__figura--c forma--puntos color-amarillo"></span>
+        <span class="forma hero__figura--d forma--cuadricula color-verde"></span>
       </div>
+
+      <div class="hero__marco">
+        <p class="hero__antetitulo">Campaña de puesta en valor del Diseño</p>
+      </div>
+
       <div class="hero__contenido">
-        <h1 class="hero__titulo" id="hero-titulo">
-          <span class="hero__linea">Diseñá</span>
-          <span class="hero__linea hero__linea--b">lo que</span>
-          <span class="hero__linea hero__linea--c">viene.</span>
-        </h1>
-        <p class="hero__intro">
-          Diseñá lo que viene es una campaña de puesta en valor del Diseño:
-          una invitación a reconocerlo como campo de conocimiento, formación
-          universitaria y práctica profesional que interviene en la vida
-          cotidiana y en las decisiones colectivas.
-        </p>
-        <div class="hero__acciones">
+        <div class="hero__principal">
+          <h1 class="hero__titulo" id="hero-titulo">
+            <span class="hero__linea">¿de qué</span>
+            <span class="hero__linea hero__linea--b">se trata</span>
+            <span class="hero__linea hero__linea--c">diseñar<span class="hero__signo">?</span></span>
+          </h1>
+          <p class="hero__nota">
+            Una pregunta para abrir la conversación.
+          </p>
+        </div>
+
+        <div class="hero__texto">
+          <p class="hero__texto-etiqueta">La campaña</p>
+          <p class="hero__intro">
+            Diseñá lo que viene es una campaña de puesta en valor del Diseño:
+            una invitación a reconocerlo como campo de conocimiento, formación
+            universitaria y práctica profesional que interviene en la vida
+            cotidiana y en las decisiones colectivas.
+          </p>
           <a class="boton" href="#campana">
             Conocé la campaña
             <svg class="boton__flecha" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -65,57 +74,47 @@
           </a>
         </div>
       </div>
-      <div class="hero__pie" aria-hidden="true">
-        <span class="hero__pie-item">Conocimiento</span>
-        <span class="hero__pie-marca"></span>
-        <span class="hero__pie-item">Formación</span>
-        <span class="hero__pie-marca hero__pie-marca--circulo"></span>
-        <span class="hero__pie-item">Investigación</span>
-        <span class="hero__pie-marca"></span>
-        <span class="hero__pie-item">Profesión</span>
-        <span class="hero__pie-marca hero__pie-marca--circulo"></span>
-        <span class="hero__pie-item">Diseño</span>
+
+      <div class="hero__palabras" aria-label="Conceptos de la campaña">
+        <span class="hero__palabra">conocimiento</span>
+        <span class="hero__punto hero__punto--fucsia" aria-hidden="true"></span>
+        <span class="hero__palabra">formación</span>
+        <span class="hero__punto hero__punto--verde" aria-hidden="true"></span>
+        <span class="hero__palabra">investigación</span>
+        <span class="hero__punto hero__punto--amarillo" aria-hidden="true"></span>
+        <span class="hero__palabra">profesión</span>
+        <span class="hero__punto hero__punto--marino" aria-hidden="true"></span>
+        <span class="hero__palabra">diseño</span>
       </div>
     </section>
 
     <!-- ============ 2 · POR QUÉ ============ -->
     <section class="seccion seccion--marino" id="por-que" aria-labelledby="porque-titulo">
       <div class="seccion__inner">
-        <header class="seccion__cabecera" data-revelar>
-          <h2 class="titulo titulo--claro" id="porque-titulo">
-            ¿Por qué poner<br>en valor el Diseño?
-          </h2>
-        </header>
-
         <div class="porque__grid">
           <div class="porque__texto" data-revelar>
+            <header class="seccion__cabecera">
+              <h2 class="titulo titulo--claro" id="porque-titulo">
+                ¿Por qué poner<br>en valor el Diseño?
+              </h2>
+            </header>
             <p class="destacado destacado--claro">
               No todo lo importante se ve. El Diseño suele asociarse
               principalmente con la estética, la creatividad o la apariencia de
               los objetos y mensajes. Aunque estas dimensiones forman parte de
               la disciplina, no explican por sí solas su alcance.
             </p>
-            <p>
-              Detrás de cada proyecto existen procesos de investigación, análisis,
-              conocimientos específicos, decisiones y métodos de trabajo.
-              Reconocer estas dimensiones permite comprender el Diseño como un
-              campo de conocimiento, formación y ejercicio profesional.
-            </p>
-            <p>
-              Poner en valor el Diseño implica ampliar la mirada y reconocer todo
-              lo que interviene en la construcción de una propuesta.
-            </p>
           </div>
 
           <!-- Composición: de lo profundo a lo visible, por capas orgánicas -->
           <figure class="capas" data-revelar>
-            <div class="capas__pila">
-              <span class="capa capa--top">Resultado visible</span>
-              <span class="capa capa--1">Investigación</span>
-              <span class="capa capa--2">Análisis</span>
-              <span class="capa capa--3">Conocimientos</span>
-              <span class="capa capa--4">Decisiones</span>
-              <span class="capa capa--5">Métodos de trabajo</span>
+            <div class="capas__pila" role="group" aria-label="Capas del proceso de diseño">
+              <button class="capa capa--top" type="button" aria-pressed="true">Resultado visible</button>
+              <button class="capa capa--1" type="button" aria-pressed="false">Investigación</button>
+              <button class="capa capa--2" type="button" aria-pressed="false">Análisis</button>
+              <button class="capa capa--3" type="button" aria-pressed="false">Conocimientos</button>
+              <button class="capa capa--4" type="button" aria-pressed="false">Decisiones</button>
+              <button class="capa capa--5" type="button" aria-pressed="false">Métodos de trabajo</button>
             </div>
             <figcaption class="capas__leyenda">
               De abajo hacia arriba: lo profundo se vuelve visible. Cada
@@ -130,35 +129,28 @@
     <!-- ============ 3 · EN LA SOCIEDAD ============ -->
     <section class="seccion seccion--claro" id="sociedad" aria-labelledby="sociedad-titulo">
       <div class="seccion__inner">
-        <div class="vida__grid">
-          <div class="vida__texto" data-revelar>
-            <header class="seccion__cabecera seccion__cabecera--chica">
-              <h2 class="titulo" id="sociedad-titulo">
-                El Diseño<br>en la sociedad.
-              </h2>
+          <div class="vida__cabecera" data-revelar>
+            <h2 class="titulo" id="sociedad-titulo">
+              El Diseño<br>en la sociedad.
+            </h2>
+            <div class="vida__intro">
               <p class="destacado">
                 Donde hay una necesidad, hay una decisión de diseño.
               </p>
-            </header>
-            <p>
-              El Diseño participa en la manera en que nos comunicamos, utilizamos
-              objetos, accedemos a información y servicios, vestimos, aprendemos y
-              habitamos espacios. En la vida cotidiana estas dimensiones no vienen
-              separadas: la señal que te guía, el objeto que usás, la ropa que
-              elegís y la pantalla que mirás son resultado de decisiones
-              entrelazadas de comunicación, producto, espacio y tecnología.
-            </p>
-            <p>
-              Sus distintas disciplinas desarrollan herramientas y propuestas
-              para responder a necesidades concretas en contextos diversos. El
-              Diseño está ahí, de manera integral, aunque no siempre se lo note.
-            </p>
-            <a class="enlace-cta" href="#formacion">
-              ¿Querés estudiar Diseño?
-              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="M4 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/>
-              </svg>
-            </a>
+              <p>
+                El Diseño participa en cómo nos comunicamos, usamos objetos,
+                accedemos a información y servicios, vestimos, aprendemos y
+                habitamos espacios. La señal que te guía, el objeto que usás, la
+                ropa que elegís y la pantalla que mirás son resultado de decisiones
+                de diseño.
+              </p>
+              <a class="enlace-cta" href="#formacion">
+                ¿Querés estudiar Diseño?
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M4 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/>
+                </svg>
+              </a>
+            </div>
           </div>
 
           <!-- Muestrario: escenario único + tira de miniaturas -->
@@ -377,7 +369,6 @@
               del catálogo oficial: sbd.produccion.gob.ar
             </p>
           </div>
-        </div>
       </div>
     </section>
 
@@ -390,29 +381,17 @@
             ¿Por qué estudiar<br>Diseño?
           </h2>
           <p class="destacado destacado--blanco destacado--ancho">
-            Estudiar Diseño no es aprender a decorar: es aprender a mirar antes
-            de proponer. Es entender qué hay detrás de todo lo que se diseña y
-            por qué esas decisiones importan.
+            Estudiar Diseño es aprender a mirar antes de proponer y a entender
+            qué hay detrás de cada decisión.
           </p>
         </header>
 
         <div class="formacion__grid">
           <div class="formacion__texto" data-revelar>
             <p>
-              La formación en Diseño combina conocimientos teóricos y técnicos,
-              investigación, experimentación y práctica proyectual. Implica
-              aprender a analizar contextos, reconocer necesidades, formular
-              alternativas, desarrollar propuestas y fundamentar decisiones.
-            </p>
-            <p>
-              La universidad constituye un espacio para construir conocimientos,
-              investigar, debatir, experimentar y desarrollar herramientas para
-              intervenir profesionalmente en distintos campos.
-            </p>
-            <p>
-              Reconocer el Diseño como disciplina supone comprender tanto sus
-              procesos de formación como su contribución al desarrollo cultural,
-              social, productivo y tecnológico.
+              La formación en Diseño combina teoría, técnica y práctica
+              proyectual: analizar contextos, reconocer necesidades y
+              fundamentar decisiones.
             </p>
           </div>
 
@@ -532,20 +511,17 @@
             </header>
             <div class="campana__texto">
               <p class="destacado">
-                Diseñá lo que viene es una campaña de puesta en valor del Diseño
-                que busca ampliar su reconocimiento social y destacar su
-                importancia como campo de conocimiento, formación universitaria y
-                práctica profesional.
+                Diseñá lo que viene es una campaña que busca ampliar el
+                reconocimiento social del Diseño y destacar su importancia como
+                campo de conocimiento, formación universitaria y práctica
+                profesional.
               </p>
               <p>
-                La iniciativa propone visibilizar la diversidad de disciplinas del
-                Diseño, sus procesos de trabajo y su capacidad para intervenir en
-                problemáticas de la sociedad.
-              </p>
-              <p>
-                A través de una perspectiva vinculada con la formación, la docencia y
-                la investigación, la campaña invita a reconocer el Diseño como parte
-                de la construcción de nuevas posibilidades para el futuro.
+                La iniciativa visibiliza la diversidad de sus disciplinas, sus
+                procesos de trabajo y su capacidad para intervenir en
+                problemáticas de la sociedad. Desde la formación, la docencia y
+                la investigación, invita a reconocer el Diseño como parte de la
+                construcción de nuevas posibilidades para el futuro.
               </p>
             </div>
             <a class="boton" href="#cierre">
@@ -587,7 +563,7 @@
     <!-- ============ 6 · APP diseñAR ============ -->
     <section class="promo" id="cierre" aria-labelledby="promo-titulo">
       <div class="promo__texturas" aria-hidden="true">
-        <span class="forma promo__forma-a forma--lineas color-marino"></span>
+        <span class="forma promo__forma-a forma--cuadricula color-marino"></span>
         <span class="forma promo__forma-b forma--puntos color-marino"></span>
       </div>
       <div class="seccion__inner promo__inner">
@@ -595,11 +571,11 @@
           <div class="promo__cuerpo" data-revelar>
             <p class="promo__sello">App diseñAR</p>
             <h2 class="promo__titulo" id="promo-titulo">
-              La formación en Diseño Gráfico, <span class="promo__acento">en tu celular.</span>
+              La formación en Diseño, <span class="promo__acento">en tu celular.</span>
             </h2>
             <p class="promo__texto">
               Una aplicación para explorar las posibilidades educativas dentro
-              del Diseño Gráfico en Argentina: consultar carreras, cursos y
+              del Diseño en Argentina: consultar carreras, cursos y
               otras propuestas de formación, y descubrir qué se puede estudiar
               para dedicarse a diseñar.
             </p>
@@ -622,18 +598,20 @@
           </div>
 
           <!-- Mockup referencial de la aplicación (no es una captura real) -->
-          <div class="celular" data-revelar aria-hidden="true">
+          <div class="celular" data-revelar role="group" aria-label="Vista previa de la aplicación diseñAR">
             <div class="celular__pantalla">
               <p class="celular__barra"></p>
               <p class="celular__app">App diseñAR</p>
-              <p class="celular__buscador">Buscar formación en Diseño Gráfico</p>
-              <p class="celular__chips">
-                <span>Carreras</span><span>Cursos</span><span>Posgrados</span>
-              </p>
-              <p class="celular__fila"><span class="celular__mini cuadro--amarillo"></span> Licenciatura en Diseño Gráfico</p>
-              <p class="celular__fila"><span class="celular__mini cuadro--fucsia"></span> Tecnicatura en Diseño Gráfico</p>
-              <p class="celular__fila"><span class="celular__mini cuadro--marino"></span> Cursos de especialización</p>
-              <p class="celular__fila"><span class="celular__mini cuadro--salvia"></span> Talleres y otras propuestas</p>
+              <p class="celular__buscador">Buscar formación en Diseño</p>
+              <div class="celular__chips" role="group" aria-label="Filtrar propuestas por tipo">
+                <button class="celular__chip" type="button" data-filtro="carreras" aria-pressed="false">Carreras</button>
+                <button class="celular__chip" type="button" data-filtro="cursos" aria-pressed="false">Cursos</button>
+                <button class="celular__chip" type="button" data-filtro="talleres" aria-pressed="false">Talleres</button>
+              </div>
+              <p class="celular__fila" data-categoria="carreras"><span class="celular__mini cuadro--amarillo"></span> Licenciatura en Diseño</p>
+              <p class="celular__fila" data-categoria="carreras"><span class="celular__mini cuadro--fucsia"></span> Tecnicatura en Diseño</p>
+              <p class="celular__fila" data-categoria="cursos"><span class="celular__mini cuadro--marino"></span> Cursos de especialización</p>
+              <p class="celular__fila" data-categoria="talleres"><span class="celular__mini cuadro--salvia"></span> Talleres y otras propuestas</p>
             </div>
           </div>
         </div>
